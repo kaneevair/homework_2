@@ -31,11 +31,13 @@ with open(JSON_FILE_PATH, 'r') as json_file:
         }
         data_users.append(user_dict)
 
-for i in range(len(data_users)):
-    if len(data_books) == 0:
-        break
-    iteration = data_books.pop(0)
-    data_users[i]['books'].append(iteration)
+
+count = 0
+for book in data_books:
+    if count == len(data_users):
+        count = 0
+    data_users[count]['books'].append(book)
+    count += 1
 
 
 with open('../files/reference.json', 'w') as f:
